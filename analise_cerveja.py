@@ -2,6 +2,8 @@ import pandas as pd
 from grafico_finalDeSemana import plot_distribuicao_final_semana
 from grafico_precipitacao import plot_precipitacao_temporal
 from grafico_precipitacaoDiaria import plot_temperaturas
+from grafico_consumoCerveja import plot_consumo_cerveja
+
 # Carregando Arquivo
 def carregar_dados(beer_consuption: str):
     return pd.read_csv(beer_consuption, sep=',') 
@@ -36,6 +38,12 @@ def exibir_correlacao(df: pd.DataFrame):
 def exibir_tabela_descritiva(df: pd.DataFrame):
     print(df.describe().to_string())
 
+# (j) Produza um gráfico para a variável Final de Semana
+# (k) Gráfico das temperaturas média, mínima e máxima 
+# (l)  Gráfico da precipitação diária
+# (m) Gráfico do consumo de cerveja
+
+
 def menu_interativo():
     print("\n=== ANÁLISE DE DADOS DE CERVEJA ===")
     arquivo = 'beer_consuption.csv'
@@ -56,6 +64,7 @@ def menu_interativo():
             print("(j) Produza um gráfico para a variável Final de Semana.")
             print("(k) Gráfico das temperaturas média, mínima e máxima")
             print("(l)  Gráfico da precipitação diária")
+            print("(m) Gráfico do consumo de cerveja")
             print("(sair) Sair")
             
             opcao = input("\nDigite a letra da opção desejada: ").lower()
@@ -82,6 +91,8 @@ def menu_interativo():
                 plot_temperaturas(df)
             elif opcao == 'l':
                 plot_precipitacao_temporal(df)
+            elif opcao == 'm':
+                plot_consumo_cerveja(df)    
             elif opcao == 'sair':
                 print("Saindo do programa...")
                 break

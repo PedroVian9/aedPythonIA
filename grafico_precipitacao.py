@@ -2,9 +2,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def plot_precipitacao_temporal(df):
-    """
-    Gera um gráfico de linha mostrando a precipitação ao longo do tempo
-    """
     try:
         plt.figure(figsize=(12, 6))
         plt.plot(df['Precipitacao (mm)'], color='royalblue', label='Precipitação')

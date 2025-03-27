@@ -2,9 +2,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def plot_distribuicao_final_semana(df):
-    """
-    Gera um gráfico de barras mostrando a distribuição de finais de semana
-    """
     try:
         plt.figure(figsize=(8, 5))
         df['Final de Semana'].value_counts().plot(kind='bar', color=['skyblue', 'salmon'])
