@@ -3,6 +3,7 @@ from grafico_finalDeSemana import plot_distribuicao_final_semana
 from grafico_precipitacao import plot_precipitacao_temporal
 from grafico_precipitacaoDiaria import plot_temperaturas
 from grafico_consumoCerveja import plot_consumo_cerveja
+from grafico_coorelacaoPearson import plot_correlacao_pearson
 
 # Carregando Arquivo
 def carregar_dados(beer_consuption: str):
@@ -42,7 +43,7 @@ def exibir_tabela_descritiva(df: pd.DataFrame):
 # (k) Gráfico das temperaturas média, mínima e máxima 
 # (l)  Gráfico da precipitação diária
 # (m) Gráfico do consumo de cerveja
-
+# (n) Gráfico de correlograma com a correlação de Pearson
 
 def menu_interativo():
     print("\n=== ANÁLISE DE DADOS DE CERVEJA ===")
@@ -65,6 +66,7 @@ def menu_interativo():
             print("(k) Gráfico das temperaturas média, mínima e máxima")
             print("(l)  Gráfico da precipitação diária")
             print("(m) Gráfico do consumo de cerveja")
+            print("(n) Gráfico de correlograma com a correlação de Pearson")
             print("(sair) Sair")
             
             opcao = input("\nDigite a letra da opção desejada: ").lower()
@@ -93,6 +95,8 @@ def menu_interativo():
                 plot_precipitacao_temporal(df)
             elif opcao == 'm':
                 plot_consumo_cerveja(df)    
+            elif opcao == 'n':
+                plot_correlacao_pearson(df)
             elif opcao == 'sair':
                 print("Saindo do programa...")
                 break
