@@ -4,6 +4,10 @@ from grafico_precipitacao import plot_precipitacao_temporal
 from grafico_precipitacaoDiaria import plot_temperaturas
 from grafico_consumoCerveja import plot_consumo_cerveja
 from grafico_coorelacaoPearson import plot_correlacao_pearson
+from grafico_correlacaoSpearman import plot_correlacao_spearman
+from grafico_boxplotsOutliers import plot_boxplots_outliers
+from grafico_histogramas import plot_histogramas
+from grafico_dispersaoConsumo import plot_dispersao_consumo
 
 # Carregando Arquivo
 def carregar_dados(beer_consuption: str):
@@ -39,11 +43,15 @@ def exibir_correlacao(df: pd.DataFrame):
 def exibir_tabela_descritiva(df: pd.DataFrame):
     print(df.describe().to_string())
 
-# (j) Produza um gráfico para a variável Final de Semana
+# (j) Gráfico para a variável Final de Semana
 # (k) Gráfico das temperaturas média, mínima e máxima 
-# (l)  Gráfico da precipitação diária
+# (l) Gráfico da precipitação diária
 # (m) Gráfico do consumo de cerveja
 # (n) Gráfico de correlograma com a correlação de Pearson
+# (o) Gráfico de correlograma com a correlação de Spearman
+# (p) Boxplots: verificar se não há presença de valores extremos (outliers)
+# (q) Histograma das variáveis. Produzir o histograma para as variáveis Temperatura Media,Temperatura Minima, Temperatura Maxima, Preciptacao e Consumo
+# (r) Gráfico de dispersão entre as variáveis. Consumo de cerveja em relação as demais variáveis
 
 def menu_interativo():
     print("\n=== ANÁLISE DE DADOS DE CERVEJA ===")
@@ -67,6 +75,10 @@ def menu_interativo():
             print("(l)  Gráfico da precipitação diária")
             print("(m) Gráfico do consumo de cerveja")
             print("(n) Gráfico de correlograma com a correlação de Pearson")
+            print("(o) Gráfico de correlograma com a correlação de Spearman")
+            print("(p) Boxplots: verificar se não há presença de valores extremos (outliers)")
+            print("(q) Histograma das variáveis. Produzir o histograma para as variáveis Temperatura Media,Temperatura Minima, Temperatura Maxima, Preciptacao e Consumo")
+            print("(r) Gráfico de dispersão entre as variáveis. Consumo de cerveja em relação as demais variáveis")
             print("(sair) Sair")
             
             opcao = input("\nDigite a letra da opção desejada: ").lower()
@@ -97,19 +109,24 @@ def menu_interativo():
                 plot_consumo_cerveja(df)    
             elif opcao == 'n':
                 plot_correlacao_pearson(df)
+            elif opcao == 'o':
+                plot_correlacao_spearman(df)
+            elif opcao == 'p':
+                plot_boxplots_outliers(df)
+            elif opcao == 'q':
+                plot_histogramas(df)
+            elif opcao == 'r':
+                plot_dispersao_consumo(df)
             elif opcao == 'sair':
                 print("Saindo do programa...")
                 break
             else:
-                print("Opção inválida! Por favor, digite uma letra válida.")
-            
-            input("\nPressione Enter para continuar...")
+                print("Opção inválida! Por favor, digite uma letra válida.")       
 
     except FileNotFoundError:
         print(f"\n❌ Erro: Arquivo '{arquivo}' não encontrado!")
     except Exception as e:
         print(f"\n❌ Ocorreu um erro: {str(e)}")
-
 
 if __name__ == "__main__":
     menu_interativo()
